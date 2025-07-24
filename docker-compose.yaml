@@ -16,13 +16,14 @@ services:
     build: .
     command: >
       sh -c "
-      until pg_isready -h db -p 5432 -U ${DB_USER:-referral_user}; do
-        echo 'Waiting for PostgreSQL to be ready...'
-        sleep 2
-      done
-      echo 'PostgreSQL is ready!'python manage.py migrate --noinput &&
-      python manage.py collectstatic --noinput &&
-      gunicorn hammer.wsgi:application --bind 0.0.0.0:8000
+        until pg_isready -h db -p 5432 -U ${DB_USER:-referral_user}; do
+          echo 'Waiting for PostgreSQL to be ready...'
+          sleep 2
+        done
+        echo 'PostgreSQL is ready!'
+        python manage.py migrate --noinput &&
+        python manage.py collectstatic --noinput &&
+        gunicorn hammer.wsgi:application --bind 0.0.0.0:8000
       "
     volumes:
       - .:/app
