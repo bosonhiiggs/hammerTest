@@ -8,16 +8,37 @@
 
 ## Установка и запуск проекта
 1. Клонируйте проект
+   ```
+   git clone https://github.com/bosonhiiggs/hammerTest.git
+   cd hammerTest
+   ```
 2. Создайте виртуальное окружение
+   ```
+   python -m venv venv
+   source venv/bin/activat
+   ```
 3. Установите зависимости
+   ```
+   pip install -r requirements.txt
+   ```
 4. Настройте базу данных PostgreSQL
    - Создайте базу данный referral_db
    - Создайте пользователя referral_user
    - Дайте необходимые разрешения
    - Данные, с которыми необходимо создать БД можно взять из `.env` 
 5. Выполните миграции БД
+   ```
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
 6. Создайте пользователя (если нужен доступ к админ-панели)
+   ```
+   python manage.py createsuperuser
+   ```
 7. Запустить сервер
+   ```
+   python manage.py runserver
+   ```
 
     Сервер будет доступен по адресу `http://localhost:8000`.
 
@@ -26,7 +47,7 @@
 - Swagger UI: http://127.0.0.1:8000/api/schema/swagger-ui/
 - ReDoc: http://127.0.0.1:8000/api/schema/redoc/
 
-## Описание API endpoints
+## Описание API endpointsё
 Все endpoints находятся под префиксом `/api`
 1. Запрос кода по указанного номера для авторизации/регистрации
    - URL: `/api/auth/request_code/`
